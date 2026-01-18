@@ -4,7 +4,7 @@ export interface CreateTableUseCase {
 
 export interface Options {
   base: number;
-  limit: number;
+  limit?: number;
 }
 
 export class CreateTable implements CreateTableUseCase {
@@ -12,14 +12,14 @@ export class CreateTable implements CreateTableUseCase {
     // DI - Dependency Injection
   ) { }
 
-  execute({ base, limit }: Options) {
-    let table = `
-===========================
+  execute({ base, limit = 10 }: Options) {
+    let table = `===========================
 Tabla de multiplicar del ${base}
 ===========================\n`;
 
     for (let i = 1; i <= limit; i++) {
-      table += `${base} x ${i} = ${base * i}\n`;
+      table += `${base} x ${i} = ${base * i}`;
+      if (i < limit) table += `\n`;
     }
 
     return table;
