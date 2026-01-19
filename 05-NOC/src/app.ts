@@ -1,9 +1,11 @@
+import { envs } from './config/plugins/env.plugin';
 import { Server } from './presentation/server';
 
-(async() => {
+(async () => {
   main()
 })()
 
 function main() {
-  Server.start()
+  // Server.start()
+  // console.log(envs);
 }
