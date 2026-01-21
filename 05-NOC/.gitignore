@@ -8,6 +8,11 @@ node_modules/
 /logs
 *.log
 
+# DB
+/mongo/
+/postgres/
+/src/generated/prisma
+
 # Archivos del sistema
 .DS_Store
 Thumbs.db

@@ -30,9 +30,10 @@ export class FileSystemDatasource implements LogDatasource {
     const logAsJson = `${JSON.stringify(newlog)}\n`
     fs.appendFileSync(this.allLogsPath, logAsJson)
 
-    if (newlog.level == LogSeverityLevel.low) return;
     if (newlog.level == LogSeverityLevel.medium) fs.appendFileSync(this.mediumLogsPath, logAsJson);
     if (newlog.level == LogSeverityLevel.high) fs.appendFileSync(this.highLogsPath, logAsJson);
+
+    console.log("Fs log created");
   }
 
   private getLogsFromFile = (path: string): LogEntity[] => {
