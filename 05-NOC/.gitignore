@@ -10,7 +10,9 @@ node_modules/
 
 # DB
 /mongo/
+/mongo-test/
 /postgres/
+/postgres-test/
 /src/generated/prisma
 
 # Archivos del sistema

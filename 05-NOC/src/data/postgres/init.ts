@@ -21,7 +21,7 @@ export class PostgresDataBase {
       console.log("Postgres connected");
       return this.prisma;
     } catch (error) {
-      console.error("Postgres connection error:", error);
+      console.log("Postgres connection error:", error);
       throw error;
     }
   }

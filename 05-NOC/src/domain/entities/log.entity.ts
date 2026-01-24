@@ -32,8 +32,9 @@ export class LogEntity {
     if (!message) throw new Error("Message is required")
     if (!level) throw new Error("Severity level is required")
     if (!createdAt) throw new Error("Creation Time is required")
+    if (!origin) throw new Error("Origin is required")
 
-    return new LogEntity({ message, level, origin })
+    return new LogEntity({ message, level, createdAt: new Date(createdAt), origin })
   }
 
   static fromObject = (object: { [key: string]: any }): LogEntity => {

@@ -8,9 +8,19 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "dev": "tsnd --respawn src/app.ts",
+    "dev": "tsnd --respawn --clear src/app.ts",
     "build": "rimraf ./dist && tsc",
-    "start": "npm run build && node dist/app.js"
+    "start": "npm run build && node dist/app.js",
+    
+    "docker:up:test": "docker compose -f docker-compose.test.yml --env-file .env.test up -d",
+    "docker:down:test": "docker compose -f docker-compose.test.yml --env-file .env.test down",
+
+    "prisma:migrate:test": "dotenv -e .env.test -- prisma migrate deploy",
+
+    "test:prepare": "npm run docker:up:test && npm run prisma:migrate:test",
+    "test": "npm run test:prepare && jest",
+    "test:watch": "npm run test:prepare && jest --watch",
+    "test:coverage": "npm run test:prepare && jest --coverage"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.2.0",
@@ -23,11 +33,16 @@
     "pg": "^8.17.2"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/node": "^25.0.9",
     "@types/nodemailer": "^7.0.5",
     "@types/pg": "^8.16.0",
+    "dotenv-cli": "^11.0.0",
+    "jest": "^30.2.0",
     "prisma": "^7.2.0",
     "rimraf": "^6.1.2",
+    "supertest": "^7.2.2",
+    "ts-jest": "^29.4.6",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   }
