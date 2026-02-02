@@ -24,13 +24,17 @@ export class AuthController {
   loginUser = (req: Request, res: Response) => {
     const [error, loginUserDto] = LoginUserDto.create(req.body)
     if (error) return res.status(400).json({ error })
-      
+
     this.authService.loginUser(loginUserDto!)
       .then(user => res.json(user))
       .catch(err => this.handleError(err, res))
   }
 
   validateEmail = (req: Request, res: Response) => {
-    res.json("ValidateEmail")
+    const { token } = req.params
+
+    this.authService.validateEmail(token)
+      .then(() => res.json("Email was validated properly"))
+      .catch(err => this.handleError(err, res))
   }
 }
