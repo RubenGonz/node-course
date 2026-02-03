@@ -14,5 +14,5 @@ export class PaginationDto {
 
     return [ undefined, new PaginationDto(page, limit)];
   }
-
+  
 }
